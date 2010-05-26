@@ -1,57 +1,106 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
+  <base target="_blank">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" type="text/javascript"></script>
+	
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" type="text/javascript"></script>
+  <script src="misc.js" type="text/javascript"></script>
+  
+  <link rel="stylesheet" type="text/css" href="main.css" />
+
 	<title>Cezar Sá Espinola</title>
-<style>
-#content {
-  width: 300px;
-  margin-top: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #6DAFEB;
-  border: 4px solid #365775;
-  padding: 4px;
-}
-a {
-  color: #333;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-hr {
-  border: 1px solid #365775;
-}
-
-</style>
 <script>
 $(function() {
-  var mail = "cezarsa";
-  mail += "@";
-  mail += "gmail.";
-  mail += "com";
-  var link = $("<a href=''></a>");
-  link.attr('href', "mailto:" + mail);
-  link.text(mail);
-  $("span.my_email").html(link);
+  
+  var birthday = Date.parse($('time.birthday').attr('datetime'));
+  var now = new Date();
+  $('.years_old').html(parseInt((now - birthday) / (365.25 * 24 * 60 * 60 * 1000)) + ' years old');
+  
+  gmail("span.my_email", 'cezarsa');
+  
+  $('button.more').click(function() {
+    $('.' + this.id).toggle();
+    var $this = $(this);
+    $this.show();
+    if($this.text() == 'More') {
+      $this.text('Less');
+    } else {
+      $this.text('More')
+    }
+  });
+  $('button.more').click();
 });
 </script>
 </head>
 <body>
   <div id="content">
-    <div style="text-align: center">
-      <span class="my_email"></span><br/>
-      <a href="http://github.com/cezarsa">http://github.com/cezarsa</a><br/>
-      <a href="http://twitter.com/cezarsa">http://twitter.com/cezarsa</a>
+    <p class="greeting_box">
+    Hi, I am <span class="information">Cezar Sá Espinola</span> and this whole page is about me as I intend to use it as my <span class="information">online resume</span>.
+    </p>
+    
+    <div class="block">
+      <h2>Personal Information:</h2>
+      <div class="inner_block">
+        My full name is <span class="information">Cezar Sá Espinola</span>. I was born on <time class="birthday" datetime="1984-07-10T18:00:00Z">July 10, 1984</time>, so that makes me <span class="years_old information">25 years old</span>.
+        Right now I live in the city of <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Fortaleza&sll=-3.807583,-38.451521&sspn=0.002585,0.004823&ie=UTF8&hq=&hnear=Fortaleza+-+Cear%C3%A1,+Brazil&t=h&z=11">Fortaleza</a> in Brazil and I work
+        as a <span class="information">software developer</span> in a brazilian bank.
+      </div>
     </div>
-    <hr/>
-    <div id="projects">
-      <a href="http://cezarsa.github.com/chromed_bird">Chromed Bird</a>
+    
+    <div class="block">
+      <h2>Formal education:</h2>
+      <div class="inner_block">
+        I have a B.S. degree in <span class="information">Computer Science</span> granted by the <a href="http://www.uesc.br/" class="information">Universidade Estadual de Santa Cruz</a> (portuguese for State Univeristy of Santa Cruz) <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Ilh%C3%A9us+-+BA,+Brazil&sll=-3.718394,-38.543395&sspn=0.330951,0.617294&ie=UTF8&hq=&hnear=Ilh%C3%A9us+-+Bahia,+Brazil&t=k&ll=-14.807579,-39.031076&spn=0.02004,0.038581&z=15">here</a> in Brazil.
+      </div>
+    </div>
+    
+    <div class="block">
+      <h2>Fluency in Computer Languages (with some examples):</h2>
+      <div class="inner_block">
+        I pretty fluent in <span class="information"><a href="http://github.com/evanphx/rubinius/commit/de8f3d13f6602bd49da549dc4bfeff11d9532c5f">C</a>, C++, Java, <a href="http://github.com/cezarsa/crxclone/blob/master/crxclone.rb">Ruby</a>, <a href="http://github.com/cezarsa/chromed_bird/blob/master/lib/send_queue.js">Javascript</a> and SQL</span>.<br>
+        I have a descent amount of <span class="information">Python</span> knowledge and I think I could easily get more fluent using it.<br>
+        I've already played with some <span class="information">Smalltalk, Lua, Shell Script, Haskell and Prolog</span>, however just at a somewhat basic level.
+      </div>
+    </div>
+    
+    <div class="block">
+      <h2>How to contact me:</h2>
+      <div class="inner_block">
+        Easy, <span class="my_email information">cezarsa at the gmail domain</span> <button type="button" id="contact_box" class="more"></button>
+        <div class="info_box contact_box">
+          <h3 title="nothing like old school letters">Mailing Address</h3>
+          (ask me)
+        </div>
+        <div class="info_box contact_box">
+          <h3>Phones</h3>
+          +55 85 8663 3339 (mobile)<br>
+          (ask me for my home and work numbers)
+        </div>
+      </div>
+    </div>
+    
+    <div class="block">
+      <h2>More ways to find information about me:</h2>
+      <div class="inner_block">
+        There are many options for doing that, let's try to enumerate them:<br>
+        <ul>
+          <li>First, just <a class="information" href="http://www.google.com/search?q=%22Cezar+S%C3%A1+Espinola%22+OR+cezarsa+OR+%22Cezar+Espinola%22">Google Me</a>, then</li>
+          <li>Visit my <a class="information" href="http://github.com/cezarsa">GitHub</a> profile, after that you can</li>
+          <li>Check my <a class="information" href="http://twitter.com/cezarsa">Twitter</a> account, and finally</li>
+          <li>Take a look at my <a class="information" href="http://www.orkut.com.br/Main#Profile?uid=11146128155331321055">Orkut</a> profile (come'on I'm Brazilian).</li>
+        </ul>
+      </div>
     </div>
   </div>
+  
+  
+  
+  
+  
+  
+  
+  
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
